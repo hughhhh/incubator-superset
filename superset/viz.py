@@ -29,8 +29,9 @@ import pandas as pd
 from pandas.tseries.frequencies import to_offset
 import simplejson as json
 from six import PY3, string_types, text_type
-from six.moves import reduce
 import polyline
+from six.moves import reduce
+
 
 from superset import app, cache, get_manifest_file, utils
 from superset.utils import DTTM_ALIAS, merge_extra_filters

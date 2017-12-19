@@ -1840,7 +1840,7 @@ class Superset(BaseSupersetView):
             bootstrap_data=json.dumps(bootstrap_data),
         )
 
-    @expose("/dashboard_json/<dashboard_id>/")
+    @expose('/dashboard_json/<dashboard_id>/')
     def dashboard_json(self, dashboard_id):
         """Server side rendering for a dashboard"""
         session = db.session()

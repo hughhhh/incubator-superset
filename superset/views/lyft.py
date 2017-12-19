@@ -2,21 +2,17 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
-
 import json
 import logging
 import traceback
-
-from flask_appbuilder import expose
 from flask import (
     g, request, Response,
 )
-
+from flask_appbuilder import expose
 from flask_babel import gettext as __
 from superset import (
     app, appbuilder, db, utils,
 )
-
 import superset.models.core as models
 from superset.utils import QueryStatus
 from superset.views.core import Superset
