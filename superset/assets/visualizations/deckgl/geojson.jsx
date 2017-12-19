@@ -2,7 +2,27 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { GeoJsonLayer } from 'deck.gl';
 
+// make more sopisticated translate into whatever deckGl needs
+import { hexToRGB } from '../../javascripts/modules/colors';
 import DeckGLContainer from './DeckGLContainer';
+
+/*
+  1 - User provides geojson.properties
+      > apply mapping
+  2 - if Opacity != 0 apply colors from user data
+      > else apply mapping
+  3 - no properties
+      > fallback on some type of default (colorPrimary)
+*/
+
+const propertyMap = {
+  color: 'fillColor',
+  fill: 'fillColor'
+  'fill-color': 'fillColor',
+  'stroke-color': 'strokeColor',
+  'stroke-width': 'strokeWidth',
+
+}
 
 function DeckGeoJsonLayer(slice, payload, setControlValue) {
   const fd = slice.formData;

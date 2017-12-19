@@ -142,6 +142,21 @@ export const controls = {
     default: colorPrimary,
     renderTrigger: true,
   },
+  fill_color_picker: {
+    label: t('Fill Color'),
+    description: t('....'),
+    type: 'ColorPickerControl',
+    default: colorPrimary,
+    renderTrigger: true,
+  },
+
+  stroke_color_picker: {
+    label: t('Stroke Color'),
+    description: t('....'),
+    type: 'ColorPickerControl',
+    default: colorPrimary,
+    renderTrigger: true,
+  },
 
   metric: {
     type: 'SelectControl',

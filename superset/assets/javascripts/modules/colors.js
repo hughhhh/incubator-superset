@@ -1,7 +1,7 @@
 import d3 from 'd3';
 
 export const brandColor = '#00A699';
-export const colorPrimary = { r: 0, g: 122, b: 135, a: 1 };
+export const colorPrimary = { r: 0, g: 122, b: 135, a: 1 }; // convert to deckGL formating [r, g, b, alpha]
 
 // Color related utility functions go in this object
 export const bnbColors = [
@@ -167,6 +167,13 @@ export const colorScalerFactory = function (colors, data, accessor, extents) {
   const points = colors.map((col, i) => ext[0] + (i * chunkSize));
   return d3.scale.linear().domain(points).range(colors).clamp(true);
 };
+
+export function anyColorRGB(color){
+  // hex -> [r, g, b, alpha];
+  // { r: 0, g: 122, b: 135, a: 1 } ->  [r, g, b, alpha]
+  // more to come....
+  return [0,0,0,0]
+}
 
 export function hexToRGB(hex, alpha = 255) {
   if (!hex) {
