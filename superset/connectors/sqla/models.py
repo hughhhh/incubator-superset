@@ -543,11 +543,11 @@ class SqlaTable(Model, BaseDatasource):
         where_clause_and = []
         having_clause_and = []
         for flt in filter:
-            if not all([flt.get(s) for s in ['col', 'op', 'val']]):
+            if not all([flt.get(s) for s in ['col', 'op']]):
                 continue
             col = flt['col']
             op = flt['op']
-            eq = flt['val']
+            eq = flt.get('val')
             col_obj = cols.get(col)
             if col_obj:
                 if op in ('in', 'not in'):
@@ -565,6 +565,8 @@ class SqlaTable(Model, BaseDatasource):
                         if v is not None:
                             values.append(v)
                     cond = col_obj.sqla_col.in_(values)
+                    if '<NULL>' in eq:
+                        cond = or_(cond, col_obj.sqla_col == None)
                     if op == 'not in':
                         cond = ~cond
                     where_clause_and.append(cond)
@@ -585,6 +587,10 @@ class SqlaTable(Model, BaseDatasource):
                         where_clause_and.append(col_obj.sqla_col <= eq)
                     elif op == 'LIKE':
                         where_clause_and.append(col_obj.sqla_col.like(eq))
+                    elif op == 'IS NULL':
+                        where_clause_and.append(col_obj.sqla_col == None)
+                    elif op == 'IS NOT NULL':
+                        where_clause_and.append(col_obj.sqla_col != None)
         if extras:
             where = extras.get('where')
             if where:
